@@ -1,0 +1,8 @@
+{
+  "name": "josemanueldominguezbackend",
+  "version": "0.0.1",
+  "description": "backend para la web",
+  "main": "index.js",
+  "author": "Jose Manuel Dominguez",
+  "license": "MIT"
+}
