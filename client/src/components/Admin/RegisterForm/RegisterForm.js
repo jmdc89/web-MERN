@@ -39,7 +39,7 @@ export default function RegisterForm( ) {
                 </Checkbox>
             </Form.Item>
             <Form.Item>
-                <Button htmltype="submit" className="register-form_button">
+                <Button htmltype="submit" className="register-form__button">
                     Crear cuenta
                 </Button>
             </Form.Item>
