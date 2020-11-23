@@ -80,12 +80,14 @@ export default function RegisterForm() {
             } else {
                 notification["success"]({
                     message: "Cuenta creada..."
-                });
-            } else {
-                // TO DO: Conectar con el API y registrar el usuario
-            }
-        }
+                });} 
+            
+            // else {
+            //     TO DO: Conectar con el API y registrar el usuario
+            // }
+        };
     };
+    
 
 
     return (
@@ -125,7 +127,7 @@ export default function RegisterForm() {
             </Form.Item>
             <Form.Item>
                 <Checkbox 
-                    name="privacePolicy" 
+                    name="privacyPolicy" 
                     onChange={inputValidation}
                     checked={inputs.privacyPolicy}
                 >
@@ -139,4 +141,6 @@ export default function RegisterForm() {
             </Form.Item>
         </Form>
     );
-}
+ 
+
+};
