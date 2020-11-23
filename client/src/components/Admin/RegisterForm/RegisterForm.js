@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Form, Icon, Input, Button, Checkbox, notification } from "antd";
 import { emailValidation, minLengthValidation } from '../../../utils/formValidation';
 
+import { signUpApi } from '../../../api/user';
+
 import "./RegisterForm.scss";
 
 export default function RegisterForm() {
@@ -59,7 +61,7 @@ export default function RegisterForm() {
         }
     };
 
-    const register = e => {
+    const register = async e => {
         e.preventDefault();
         const {email, password, repeatPassword, privacyPolicy} = formValid;
 
@@ -68,7 +70,7 @@ export default function RegisterForm() {
         const repeatPasswordVal = inputs.repeatPassword;
         const privacyPolicyVal = inputs.privacyPolicy;
 
-        if(!emailVal || !passwordVal || !repeatPasswordVal || !inputs.privacyPolicyVal) {
+        if(!emailVal || !passwordVal || !repeatPasswordVal || !privacyPolicyVal) {
             notification["error"] ({
                 message: "Todos los campos son obligatorios"
             });
@@ -78,18 +80,23 @@ export default function RegisterForm() {
                     message: "Las contraseñas tienen que ser iguales."
                 });
             } else {
-                notification["success"]({
-                    message: "Cuenta creada..."
-                });} 
-            
-            // else {
-            //     TO DO: Conectar con el API y registrar el usuario
-            // }
-        };
+                const result = await signUpApi(inputs);
+
+                if (!result.ok) {
+                    notification["error"] ({
+                        message: result.message
+                    });
+                } else {
+                    notification["success"] ({
+                        message: result.message
+                    });
+                }
+
+                
+            }
+        }
     };
     
-
-
     return (
         <Form className="register-form" onSubmit={register} onChange={changeForm}>
             <Form.Item>
@@ -142,5 +149,4 @@ export default function RegisterForm() {
         </Form>
     );
  
-
 };
